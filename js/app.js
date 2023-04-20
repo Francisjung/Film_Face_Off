@@ -31,7 +31,7 @@ var posterLink = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2";
 
 var tmdbURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US";
 
-var similarMovie = "https://api.themoviedb.org/3/movie/49519/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
+var similarMovie = "https://api.themoviedb.org/3/movie/18/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
 
 var movieList=[];
 
@@ -103,6 +103,7 @@ fetch(similarMovie).then(function(response){
 
 searchMovie();
 
+//Tidy this up, copy pasted code from search movie.
 function loadFaceOff(){
   fetch(similarMovie).then(function(response){
   return response.json();
