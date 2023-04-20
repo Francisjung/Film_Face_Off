@@ -1,7 +1,12 @@
 $(document).foundation();
 
+<<<<<<< HEAD
+genres {
+"Action: 28,
+=======
 var genres =  {
 "Action": 28,
+>>>>>>> b47660c9d37b6f4dcd69623810d2790d971daa9c
 "Adventure": 12,
 "Animation": 16,
 "Comedy": 35,
@@ -106,9 +111,11 @@ function updateMovies(winningButton) {
   console.log('Button 1 clicked!');
   LastWinningMovie = movieList.results[currentMovieIndex - 1];
   if (currentMovieIndex < 8) {
+    console.log(LastWinningMovie.original_title)
     updateMovies(1);
     currentMovieIndex++;
   } else {
+    console.log(LastWinningMovie.original_title)
     var lSHandle = "winner"
 var winner = LastWinningMovie.original_title;
 var storeWinner = {
