@@ -1,5 +1,6 @@
 $(document).foundation();
 
+//This object holds all of the genre codes, they will be accessed later.
 var genres =  {
 "Action": 28,
 "Adventure": 12,
@@ -36,32 +37,62 @@ var similarMovie = "https://api.themoviedb.org/3/movie/49519/similar?api_key=036
 
 var movieList=[];
 
+var genreCode;
+
 //constructors for main page movie preference values
 const button = document.querySelector('#button');
 const Genre = document.getElementById('Genre');
 const lowRating = document.getElementById('ratingLow');
 const highRating = document.getElementById('ratingHigh');
-const Actors = document.getElementById('Actors')
+const Actors = document.getElementById('Actors');
 const yearFrom = document.getElementById('yearFrom');
 const yearTo = document.getElementById('yearTo');
 
 const voteButton1 = document.getElementById('faceoffButton1');
 const voteButton2 = document.getElementById('faceoffButton2');
 
+let currentMovieIndex = 2;
+let LastWinningMovie;
+
+//This button confirms user selection and loads the next page.
 if (button) {
   button.addEventListener('click', function(event) {
+    genreCode = getGenreCode($('#Genre-drop-down').find(":selected").val());
+    console.log(genreCode);
+    similarMovie = "https://api.themoviedb.org/3/movie/"+genreCode+"/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
+    localStorage.setItem("searchAPI", similarMovie);
+    console.log("search api init: "+ localStorage.getItem("searchAPI"));
     try {
       window.location.href = 'htmls/faceoff.html';
+
+      console.log("search api= "+similarMovie);
+  fetch(similarMovie).then(function(response){
+  return response.json();
+}).then(function (data) {
+    console.log(data);
+    movieList = data;
+    document.querySelector('#movie-title-1').textContent = movieList.results[0].original_title;
+    document.querySelector('#movie-title-2').textContent = movieList.results[1].original_title;
+    document.querySelector('#movie-description-1').textContent = movieList.results[0].overview;
+    document.querySelector('#movie-description-2').textContent = movieList.results[1].overview;
+    document.querySelector('#movie-img-1').src = posterLink+movieList.results[0].poster_path;
+    document.querySelector('#movie-img-2').src = posterLink+movieList.results[1].poster_path;
+  });
+
+
     } catch (error) {
       console.error('An error occurred:', error);
       window.location.href = 'htmls/error.html';
     }
 });
 }
+//Returns the genre code of the given selection
+function getGenreCode(selectedGenre){
+  console.log(genres[selectedGenre]);
+  return genres[selectedGenre];
+}
 
-let currentMovieIndex = 2;
-let LastWinningMovie;
-
+//Takes the winner of the last vote and updates the losing side with the next movie in the list.
 function updateMovies(winningButton) {
   if (winningButton === 1) {
     document.querySelector('#movie-title-2').textContent = movieList.results[currentMovieIndex].original_title;
@@ -75,6 +106,7 @@ function updateMovies(winningButton) {
 }
 
 //Left button event listener, replaces losing movie and saves winning movie.
+if(voteButton1){
 voteButton1.addEventListener('click', function() {
   console.log('Button 1 clicked!');
   LastWinningMovie = movieList.results[currentMovieIndex - 1];
@@ -89,6 +121,7 @@ var winner = LastWinningMovie.original_title;
 var storeWinner = {
     "Winner": winner
 }
+//Saves the winner in local storage.
 localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
     try {
       window.location.href = '../htmls/winner.html';
@@ -98,7 +131,9 @@ localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
     }
   }
 });
+}
 //Right button event listener, replaces losing movie and saves winning movie.
+if(voteButton2){
 voteButton2.addEventListener('click', function() {
   console.log('Button 2 clicked!');
   LastWinningMovie = movieList.results[currentMovieIndex];
@@ -120,6 +155,7 @@ localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
     }
   }
 });
+}
 
 //Prints a list of viable genres to the console.
 //This method will not be in final version, only exists to test api calls
@@ -135,19 +171,24 @@ fetch(tmdbURL).then(function(response){
 });
 }
 
-function searchMovie(){
+/*function searchMovie(){
+  console.log(similarMovie);
 fetch(similarMovie).then(function(response){
   return response.json();
 }).then(function (data) {
     console.log(data);
     movieList = data;
 });
-}
+console.log("search movie successfully run!")
+}*/
 
-searchMovie();
+//searchMovie();
 
 function loadFaceOff(){
-  fetch(similarMovie).then(function(response){
+  console.log(similarMovie);
+  var storedLink = localStorage.getItem("searchAPI");
+  console.log("search api= "+storedLink);
+  fetch(storedLink).then(function(response){
   return response.json();
 }).then(function (data) {
     console.log(data);
