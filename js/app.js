@@ -31,7 +31,7 @@ var apikey = "0369d0746be36bbf12f206aeb60eac4d";
 var posterLink = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2";
 
 var tmdbURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US";
-
+/*+getGenreCode(document.querySelector('#Genre').value)+*/
 var similarMovie = "https://api.themoviedb.org/3/movie/18/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
 
 var movieList=[];
@@ -61,6 +61,10 @@ if (button) {
 
 let currentMovieIndex = 2;
 let LastWinningMovie;
+
+function getGenreCode(selectedGenre){
+  console.log(genres.selectedGenre);
+}
 
 function updateMovies(winningButton) {
   if (winningButton === 1) {
