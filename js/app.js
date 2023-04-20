@@ -1,12 +1,7 @@
 $(document).foundation();
 
-<<<<<<< HEAD
-genres {
-"Action: 28,
-=======
 var genres =  {
 "Action": 28,
->>>>>>> b47660c9d37b6f4dcd69623810d2790d971daa9c
 "Adventure": 12,
 "Animation": 16,
 "Comedy": 35,
@@ -107,7 +102,8 @@ function updateMovies(winningButton) {
 }
 
 //Left button event listener, replaces losing movie and saves winning movie.
-  voteButton1.addEventListener('click', function() {
+if(voteButton1){  
+voteButton1.addEventListener('click', function() {
   console.log('Button 1 clicked!');
   LastWinningMovie = movieList.results[currentMovieIndex - 1];
   if (currentMovieIndex < 8) {
@@ -130,8 +126,9 @@ localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
     }
   }
 });
-
+}
 //Right button event listener, replaces losing movie and saves winning movie.
+if(voteButton2){
 voteButton2.addEventListener('click', function() {
   console.log('Button 2 clicked!');
   LastWinningMovie = movieList.results[currentMovieIndex];
@@ -153,7 +150,7 @@ localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
     }
   }
 });
-
+}
 //Prints a list of viable genres to the console.
 //This method will not be in final version, only exists to test api calls
 function returnGenreList(){
