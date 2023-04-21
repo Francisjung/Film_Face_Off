@@ -1,6 +1,5 @@
 $(document).foundation();
 
-//This object holds all of the genre codes, they will be accessed later.
 var genres =  {
 "Action": 28,
 "Adventure": 12,
@@ -24,196 +23,41 @@ var genres =  {
 };
 
 
-//var omdbURL = "http://www.omdbapi.com/?i=tt3896198&apikey=2d8eaee1";
-
 //HTTPS Links for API call
 var apikey = "0369d0746be36bbf12f206aeb60eac4d";
 
 var posterLink = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2";
 
+var tmdbURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US";
 
-var genreCode;
+var similarMovie = "https://api.themoviedb.org/3/movie/49519/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
+
+var movieList=[];
 
 //constructors for main page movie preference values
 const button = document.querySelector('#button');
 const Genre = document.getElementById('Genre');
 const lowRating = document.getElementById('ratingLow');
 const highRating = document.getElementById('ratingHigh');
-const Actors = document.getElementById('Actors');
+const actors = document.querySelector('#actors')
 const yearFrom = document.getElementById('yearFrom');
 const yearTo = document.getElementById('yearTo');
-const testGenre = document.getElementById('genre-test');
 
 const voteButton1 = document.getElementById('faceoffButton1');
 const voteButton2 = document.getElementById('faceoffButton2');
 
-let currentMovieIndex = 2;
-let LastWinningMovie;
-
-//This button confirms user selection and loads the next page.
 if (button) {
   button.addEventListener('click', function(event) {
-
-    try {
-      //searchMovie(similarMovie);
-      window.location.href = 'htmls/faceoff.html';
-
-      console.log("search api= "+similarMovie);
-      //searchMovie(similarMovie);
-       console.log(similarMovie);
-      fetch(similarMovie).then(function(response){
-      return response.json();
-      }).then(function (data) {
-      console.log(data);
-      movieList = data;
-});
-console.log("search movie successfully run!");
-      document.querySelector('#movie-title-1').textContent = movieList.results[0].original_title;
-    document.querySelector('#movie-title-2').textContent = movieList.results[1].original_title;
-    document.querySelector('#movie-description-1').textContent = movieList.results[0].overview;
-    document.querySelector('#movie-description-2').textContent = movieList.results[1].overview;
-    document.querySelector('#movie-img-1').src = posterLink+movieList.results[0].poster_path;
-    document.querySelector('#movie-img-2').src = posterLink+movieList.results[1].poster_path;
-
+   event.preventDefault();
+   actor = actors.value;
+   saveString = {
+    "actor":actor
+   }
+  localStorage.setItem("actor", JSON.stringify(saveString));
+   try {
+      window.location.href = './htmls/faceoff.html';
     } catch (error) {
       console.error('An error occurred:', error);
       window.location.href = 'htmls/error.html';
     }
-});
-}
-//Returns the genre code of the given selection
-function getGenreCode(selectedGenre){
-  console.log(genres[selectedGenre]);
-  return genres[selectedGenre];
-}
-
-
-function updateMovies(winningButton) {
-  if (winningButton === 1) {
-    document.querySelector('#movie-title-2').textContent = movieList.results[currentMovieIndex].original_title;
-    document.querySelector('#movie-description-2').textContent = movieList.results[currentMovieIndex].overview;
-    document.querySelector('#movie-img-2').src = posterLink + movieList.results[currentMovieIndex].poster_path;
-  } else {
-    document.querySelector('#movie-title-1').textContent = movieList.results[currentMovieIndex].original_title;
-    document.querySelector('#movie-description-1').textContent = movieList.results[currentMovieIndex].overview;
-    document.querySelector('#movie-img-1').src = posterLink + movieList.results[currentMovieIndex].poster_path;
-  }
-}
-
-//Left button event listener, replaces losing movie and saves winning movie.
-
-voteButton1.addEventListener('click', function() {
-  console.log('Button 1 clicked!');
-  LastWinningMovie = movieList.results[currentMovieIndex - 1];
-  if (currentMovieIndex < 8) {
-    console.log(LastWinningMovie.original_title)
-    updateMovies(1);
-    currentMovieIndex++;
-  } else {
-    console.log(LastWinningMovie.original_title)
-    var lSHandle = "winner"
-var winner = LastWinningMovie.original_title;
-var storeWinner = {
-    "Winner": winner
-}
-//Saves the winner in local storage.
-localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
-    try {
-      window.location.href = '../htmls/winner.html';
-    } catch (error) {
-      console.error('An error occurred:', error);
-      window.location.href = '../htmls/error.html';
-    }
-  }
-});
-}
-//Right button event listener, replaces losing movie and saves winning movie.
-if(voteButton2){
-voteButton2.addEventListener('click', function() {
-  console.log('Button 2 clicked!');
-  LastWinningMovie = movieList.results[currentMovieIndex];
-  if (currentMovieIndex < 8) {
-    updateMovies(2);
-    currentMovieIndex++;
-  } else {
-    var lSHandle = "winner"
-var winner = LastWinningMovie.original_title;
-var storeWinner = {
-    "Winner": winner
-}
-localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
-    try {
-      window.location.href = '../htmls/winner.html';
-    } catch (error) {
-      console.error('An error occurred:', error);
-      window.location.href = '../htmls/error.html';
-    }
-  }
-});
-}
-
-//Prints a list of viable genres to the console.
-//This method will not be in final version, only exists to test api calls
-/*function returnGenreList(){
-fetch(tmdbURL).then(function(response){
-
-  return response.json();
-
-}).then(function (data) {
-    for(var i=0; i<data.genres.length; i++){
-      //console.log(data.genres[i]);
-    }
-});
-}*/
-
-
-  return response.json();
-}).then(function (data) {
-    console.log("movie data collected!");
-    movieList = data;
-});
-console.log("search movie successfully run!");
-}
-
-    document.querySelector('#movie-title-1').textContent = movieList.results[0].original_title;
-    document.querySelector('#movie-title-2').textContent = movieList.results[1].original_title;
-    document.querySelector('#movie-description-1').textContent = movieList.results[0].overview;
-    document.querySelector('#movie-description-2').textContent = movieList.results[1].overview;
-    document.querySelector('#movie-img-1').src = posterLink+movieList.results[0].poster_path;
-    document.querySelector('#movie-img-2').src = posterLink+movieList.results[1].poster_path;
-
-function searchActor(actorName){
-var actorSearch = "https://api.themoviedb.org/3/search/person?api_key=&language=en-US&page=1&include_adult=false&query="+actorName;
-
-fetch(actorSearch).then(function(response){
-
-  return response.json();
-
-}).then(function (data) {
-var actorId = data.results[0].id  
-//console.log (actorId);
-    
 })}
-
-searchActor("Nicolas Cage");*/
-
-
-
-
-
-/*var movie = [0,1,2,3,4,5,6,7,]
-function searchActor(blank){
-var actorSearch = "https://api.themoviedb.org/3/genre/movie/list?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US"
-
-fetch(actorSearch).then(function(response){
-
-  return response.json();
-
-}).then(function (data) {
-
-//console.log (data);
-    
-})}
-
-searchActor ()*/
-
