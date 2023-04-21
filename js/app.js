@@ -30,11 +30,6 @@ var apikey = "0369d0746be36bbf12f206aeb60eac4d";
 
 var posterLink = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2";
 
-var tmdbURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US";
-
-var similarMovie = "https://api.themoviedb.org/3/movie/28/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
-
-var movieList=[];
 
 //constructors for main page movie preference values
 const button = document.querySelector('#button');
@@ -44,13 +39,23 @@ const highRating = document.getElementById('ratingHigh');
 const Actors = document.getElementById('Actors')
 const yearFrom = document.getElementById('yearFrom');
 const yearTo = document.getElementById('yearTo');
+const testGenre = document.getElementById('genre-test');
 
 const voteButton1 = document.getElementById('faceoffButton1');
 const voteButton2 = document.getElementById('faceoffButton2');
 
 if (button) {
   button.addEventListener('click', function(event) {
+    genreNum = getGenreCode($('#Genre-drop-down').find(":selected").val());
+    console.log(genreNum);
+    genreNum = genreNum.toString();
+    console.log(genreNum);
+    similarMovie = "https://api.themoviedb.org/3/movie/"+genreNum+"/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
+    console.log(similarMovie);
+    similarMovie.toString();
+    searchMovie(similarMovie);
     try {
+      //searchMovie(similarMovie);
       window.location.href = 'htmls/faceoff.html';
     } catch (error) {
       console.error('An error occurred:', error);
@@ -61,6 +66,22 @@ if (button) {
 
 let currentMovieIndex = 2;
 let LastWinningMovie;
+
+function getGenreCode(selectedGenre){
+  console.log(genres[selectedGenre]);
+  return genres[selectedGenre];
+}
+
+//Artifact from debugging
+
+/*testGenre.addEventListener('click', function(event){
+  event.preventDefault();
+  console.log($('#Genre-drop-down').find(":selected").val());
+  console.log(getGenreCode($("#Genre-drop-down").find(":selected").val()));
+  similarMovie = "https://api.themoviedb.org/3/movie/"+getGenreCode($('#Genre-drop-down').find(":selected").val())+"/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
+  console.log(similarMovie);
+});*/
+
 
 function updateMovies(winningButton) {
   if (winningButton === 1) {
@@ -75,7 +96,7 @@ function updateMovies(winningButton) {
 }
 
 //Left button event listener, replaces losing movie and saves winning movie.
-if(voteButton1){
+
 voteButton1.addEventListener('click', function() {
   console.log('Button 1 clicked!');
   LastWinningMovie = movieList.results[currentMovieIndex - 1];
@@ -123,7 +144,6 @@ localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
     }
   }
 });
-}
 
 //Prints a list of viable genres to the console.
 //This method will not be in final version, only exists to test api calls
@@ -134,40 +154,40 @@ fetch(tmdbURL).then(function(response){
 
 }).then(function (data) {
     for(var i=0; i<data.genres.length; i++){
-      console.log(data.genres[i]);
+      //console.log(data.genres[i]);
     }
 });
 }
 
-function searchMovie(){
-fetch(similarMovie).then(function(response){
+function searchMovie(apiUrl){
+  console.log(apiUrl);
+  console.log("search movie reached");
+fetch(apiUrl).then(function(response){
+  console.log("fetch successful")
   return response.json();
 }).then(function (data) {
-    console.log(data);
+    console.log("movie data collected!");
     movieList = data;
 });
 }
 
-searchMovie();
-
+function createLink(){
+  
+}
+//Tidy this up, copy pasted code from search movie.
 function loadFaceOff(){
-  fetch(similarMovie).then(function(response){
-  return response.json();
-}).then(function (data) {
-    console.log(data);
-    movieList = data;
+    console.log(movieList);
     document.querySelector('#movie-title-1').textContent = movieList.results[0].original_title;
     document.querySelector('#movie-title-2').textContent = movieList.results[1].original_title;
     document.querySelector('#movie-description-1').textContent = movieList.results[0].overview;
     document.querySelector('#movie-description-2').textContent = movieList.results[1].overview;
     document.querySelector('#movie-img-1').src = posterLink+movieList.results[0].poster_path;
     document.querySelector('#movie-img-2').src = posterLink+movieList.results[1].poster_path;
-  });
 }
 //Searches an Actor by name and pulls their information from the database.
 //Only pulls their 3 most popular movies, may not work for what we want?
 
-var movie = [0,1,2,3,4,5,6,7,]
+var movie = [0,1,2,3,4,5,6,7,];
 function searchActor(actorName){
 var actorSearch = "https://api.themoviedb.org/3/search/person?api_key=&language=en-US&page=1&include_adult=false&query="+actorName;
 
@@ -177,7 +197,7 @@ fetch(actorSearch).then(function(response){
 
 }).then(function (data) {
 var actorId = data.results[0].id  
-console.log (actorId);
+//console.log (actorId);
     
 })}
 
@@ -197,7 +217,7 @@ fetch(actorSearch).then(function(response){
 
 }).then(function (data) {
 
-console.log (data);
+//console.log (data);
     
 })}
 
