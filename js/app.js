@@ -30,12 +30,6 @@ var apikey = "0369d0746be36bbf12f206aeb60eac4d";
 
 var posterLink = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2";
 
-var tmdbURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US";
-var genreNum =18;
-var similarMovie; //= "https://api.themoviedb.org/3/movie/"+genreNum+"/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
-
-var movieList=[];
-
 
 //constructors for main page movie preference values
 const button = document.querySelector('#button');
@@ -102,7 +96,7 @@ function updateMovies(winningButton) {
 }
 
 //Left button event listener, replaces losing movie and saves winning movie.
-if(voteButton1){  
+
 voteButton1.addEventListener('click', function() {
   console.log('Button 1 clicked!');
   LastWinningMovie = movieList.results[currentMovieIndex - 1];
@@ -150,7 +144,7 @@ localStorage.setItem(lSHandle, JSON.stringify(storeWinner));
     }
   }
 });
-}
+
 //Prints a list of viable genres to the console.
 //This method will not be in final version, only exists to test api calls
 function returnGenreList(){
