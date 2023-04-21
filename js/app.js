@@ -31,11 +31,6 @@ var apikey = "0369d0746be36bbf12f206aeb60eac4d";
 
 var posterLink = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2";
 
-var tmdbURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US";
-
-var similarMovie = "https://api.themoviedb.org/3/movie/49519/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
-
-var movieList=[];
 
 var genreCode;
 
@@ -47,6 +42,7 @@ const highRating = document.getElementById('ratingHigh');
 const Actors = document.getElementById('Actors');
 const yearFrom = document.getElementById('yearFrom');
 const yearTo = document.getElementById('yearTo');
+const testGenre = document.getElementById('genre-test');
 
 const voteButton1 = document.getElementById('faceoffButton1');
 const voteButton2 = document.getElementById('faceoffButton2');
@@ -57,12 +53,9 @@ let LastWinningMovie;
 //This button confirms user selection and loads the next page.
 if (button) {
   button.addEventListener('click', function(event) {
-    genreCode = getGenreCode($('#Genre-drop-down').find(":selected").val());
-    console.log(genreCode);
-    similarMovie = "https://api.themoviedb.org/3/movie/"+genreCode+"/similar?api_key=0369d0746be36bbf12f206aeb60eac4d&language=en-US&page=1";
-          console.log("search api init= "+similarMovie);
 
     try {
+      //searchMovie(similarMovie);
       window.location.href = 'htmls/faceoff.html';
 
       console.log("search api= "+similarMovie);
@@ -94,7 +87,7 @@ function getGenreCode(selectedGenre){
   return genres[selectedGenre];
 }
 
-//Takes the winner of the last vote and updates the losing side with the next movie in the list.
+
 function updateMovies(winningButton) {
   if (winningButton === 1) {
     document.querySelector('#movie-title-2').textContent = movieList.results[currentMovieIndex].original_title;
@@ -108,7 +101,7 @@ function updateMovies(winningButton) {
 }
 
 //Left button event listener, replaces losing movie and saves winning movie.
-if(voteButton1){
+
 voteButton1.addEventListener('click', function() {
   console.log('Button 1 clicked!');
   LastWinningMovie = movieList.results[currentMovieIndex - 1];
@@ -168,45 +161,27 @@ fetch(tmdbURL).then(function(response){
 
 }).then(function (data) {
     for(var i=0; i<data.genres.length; i++){
-      console.log(data.genres[i]);
+      //console.log(data.genres[i]);
     }
 });
 }*/
 
-function searchMovie(apiLink){
-  console.log(apiLink);
-fetch(apiLink).then(function(response){
+
   return response.json();
 }).then(function (data) {
-    console.log(data);
+    console.log("movie data collected!");
     movieList = data;
 });
 console.log("search movie successfully run!");
 }
 
-//searchMovie();
-
-/*function loadFaceOff(){
-  console.log(similarMovie);
-  var storedLink = localStorage.getItem("searchAPI");
-  console.log("search api= "+storedLink);
-  fetch(storedLink).then(function(response){
-  return response.json();
-}).then(function (data) {
-    console.log(data);
-    movieList = data;
     document.querySelector('#movie-title-1').textContent = movieList.results[0].original_title;
     document.querySelector('#movie-title-2').textContent = movieList.results[1].original_title;
     document.querySelector('#movie-description-1').textContent = movieList.results[0].overview;
     document.querySelector('#movie-description-2').textContent = movieList.results[1].overview;
     document.querySelector('#movie-img-1').src = posterLink+movieList.results[0].poster_path;
     document.querySelector('#movie-img-2').src = posterLink+movieList.results[1].poster_path;
-  });
-}*/
-//Searches an Actor by name and pulls their information from the database.
-//Only pulls their 3 most popular movies, may not work for what we want?
 
-/*var movie = [0,1,2,3,4,5,6,7,]
 function searchActor(actorName){
 var actorSearch = "https://api.themoviedb.org/3/search/person?api_key=&language=en-US&page=1&include_adult=false&query="+actorName;
 
@@ -216,7 +191,7 @@ fetch(actorSearch).then(function(response){
 
 }).then(function (data) {
 var actorId = data.results[0].id  
-console.log (actorId);
+//console.log (actorId);
     
 })}
 
@@ -236,7 +211,7 @@ fetch(actorSearch).then(function(response){
 
 }).then(function (data) {
 
-console.log (data);
+//console.log (data);
     
 })}
 
