@@ -7,13 +7,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 200px;
   }
   .translucent-form-overlay {
   max-width: 500px;
   width: 100%;
   background-color: rgba(54, 54, 54, 0.8);
   padding: 20px;
+  align-items: center;
   color: #fefefe;
 }
 
@@ -75,15 +76,23 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(204, 204, 204, 0);
+  background: rgba(54, 54, 54, 0);
   padding: 20px;
   height: 75vh;
   width: 25%;
+  
   }
 
 .movie-info, .movie-poster {
   background-color: #ffffff;
   padding: 25px;
+  border: 3px solid black;
+  
+
+}
+
+.movie-poster {
+  border-bottom: 3px solid white;
 
 }
 
@@ -112,15 +121,16 @@ opacity: 1.0;
   margin: 10px 0;
 }
 
-.movie-container button {
+#faceoffButton1,#faceoffButton2 {
   margin-top: 10px;
   padding: 10px;
-  font-size: 18px;
+  font-size: 20px;
   border-radius: 5px;
-  background-color: #8a8a8a;
-  color: #022b4a;
+  background-color: #0275d8;
+  color: white;
   border: 1px solid;
 }
+
 .wrapper{
   margin: 0 auto;
   width:75%;
@@ -143,10 +153,7 @@ opacity: 1.0;
   height: 90%;
   width: 90%;
   }
-  #winnerTitle{
-
-  }
-
+ 
   .movie-poster{
     max-height: 400px;
   }
