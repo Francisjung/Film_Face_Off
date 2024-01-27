@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/app.css">
-
 </head>
 
 <header>
     <h1>Film Face-Off</h1>
-    <h3>Many Films Enter, Only One Can Win...</h3>
+    <h2>Many Films Enter, Only One Can Win...</h2>
 </header>
 
 <body>
@@ -20,75 +19,59 @@
     <div class="translucent-form-overlay">
         <form>
           <h3>Search for Movies</h3>
+          <h4>(Fill out the last row and one of the first four rows)</h4>
           
           <!-- Form section for Genre selection -->
           <div class="row columns">
-            <label>Genre
-              <select name="Genre" id="Genre" type="text">
-                <option value="Not ready"       >Coming Soon</option>
-                <option value="Action"          >Action           </option>
-                <option value="Adventure"       >Adventure        </option>
-                <option value="Animation"       >Animation       </option>
-                <option value="Comedy"          >Comedy           </option>
-                <option value="Crime"           >Crime            </option>
-                <option value="Documentary"     >Documentary      </option>
-                <option value="Drama"           >Drama            </option>
-                <option value="Family"          >Family           </option>
-                <option value="Fantasy"         >Fantasy          </option>
-                <option value="Historical"      >History         </option>
-                <option value="Horror"          >Horror          </option>
-                <option value="Musical"         >Music           </option>
-                <option value="Mystery"         >Mystery          </option>
-                <option value="Romance"         >Romance          </option>
-                <option value="Science Fiction" >Science Fiction  </option>
-                <option value="TV Movie"        >TV Movie         </option>
-                <option value="Thriller"        >Thriller         </option>
-                <option value="War"             >war              </option>
-                <option value="Western"         >Western          </option>
+            <label>Movie's Genre
+              <select name="genres" id="genre" type="number" value="">
+                <option value=""       >Coming Soon</option>
+                <option value=28       >Action           </option>
+                <option value=12       >Adventure        </option>
+                <option value=16       >Animation        </option>
+                <option value=35       >Comedy           </option>
+                <option value=80       >Crime            </option>
+                <option value=99       >Documentary      </option>
+                <option value=18       >Drama            </option>
+                <option value=10751    >Family           </option>
+                <option value=14       >Fantasy          </option>
+                <option value=36       >History          </option>
+                <option value=27       >Horror           </option>
+                <option value=10402    >Music            </option>
+                <option value=9648     >Mystery          </option>
+                <option value=10749    >Romance          </option>
+                <option value=878      >Science Fiction  </option>
+                <option value=10770    >TV Movie         </option>
+                <option value=53       >Thriller         </option>
+                <option value=10752    >war              </option>
+                <option value=37       >Western          </option>
               </select>
             </label>
           </div>
-
-          <!-- Form section for Rating (high and low) selection -->
-          <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-              <div class="medium-6 cell">
-                <label>Lowest Rating
-                  <input type="text" id="ratingLow" placeholder="Coming Soon">
+          <!-- Form section for Release Year -->
+          <div class="row columns">
+                <label>Year Movie Released
+                  <input type="number" id="releaseYear" placeholder="Coming Soon">
                 </label>
-              </div>
-              <div class="medium-6 cell">
-                <label>Highest Rating
-                  <input type="text" id="ratingHigh" placeholder="Coming Soon">
-                </label>
-              </div>
-            </div>
           </div>
-
           <!-- Form section for actor/actress selection -->
           <div class="row columns">
-            <label>Actors/Actresses
-              <input type="text" id='actors' name="location" placeholder="Any">
+            <label>Has the Following Actor or Actress
+              <input type="text" id="actor" name="location" placeholder="Any">
             </label>
         </div>
-        
+        <div class="row columns">
+          <label>Similar to the Movie Below (by plot and/or genre)
+            <input type="text" id="similarTo" name="location" placeholder="Any">
+          </label>
+      </div>
         <!-- Form section for year range (from/to) selection -->
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-              <div class="medium-6 cell">
-                <label>Year Range (from)
-                  <input type="text" id="yearFrom" placeholder="Coming Soon">
+        <div class="row columns">
+                <label>Maximum Number of Movies to View (up to 20)
+                  <input type="number" id="movieCount" value=6>
                 </label>
               </div>
-              <div class="medium-6 cell">
-                <label>Year Range (to)
-                  <input type="text" id="yearTo" placeholder="Coming Soon">
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- search button -->
+              <!-- search button -->
           <button type="button" id="button" class="primary button expanded search-button">
             Search
           </button>
@@ -112,6 +95,8 @@
       </div>
     </div>
     <footer>
+      <img id="tmdb" src="./Assets/blue_long.svg">
+      <p>This website uses TMDB and the TMDB APIs but the website is not endorsed, certified, or otherwise approved by TMDB.</p>
         </footer>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>

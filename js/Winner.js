@@ -9,9 +9,10 @@ var storeWinner = {
 localStorage.setItem(lSHandle, JSON.stringify(storeWinner));*/
 //this is the start of the code for "winner.js"
 
-//This gets the title from local storage as saved in the app.js 
-var stored =JSON.parse(localStorage.getItem("winner"))
+//This gets the title from local storage as saved in the faceoff.js 
+var stored =JSON.parse(localStorage.getItem("faceoff"))
 var winner = stored.Winner
+//localStorage.removeItem("faceoff");
 //this grabs the title and the video wrapper to place the video and the movie Title text
 var movie = document.querySelector(".videoWrapper")
 var titleOnPage = document.querySelector("#movieTitle")
@@ -19,9 +20,9 @@ titleOnPage.textContent = winner
 var linkEnding;
 //this is the fetch function that finds the movie in the Youtube API and grabs the information to put in the elements defined above
 function searchVideo(movieTitle) {
-  var searchQuery = movieTitle + "trailer";
+  var searchQuery = movieTitle + " trailer";
   var youtubeApiKey = "kAIzaSyB4vGuFttVUg7voCvRZHYmaH_oB0YDPujk";
-  var youtubeApi = "https://www.googleapis.com/youtube/v3/search";
+  var youtubeApi = "https://www.googleapis.com/youtube/v3/search?";
 //grabs a video based off searchQuery value and provides one result
   var params = new URLSearchParams({
       part: "snippet",
@@ -30,7 +31,7 @@ function searchVideo(movieTitle) {
       maxResults: 1,
       key: "AIzaSyB4vGuFttVUg7voCvRZHYmaH_oB0YDPujk"
   });
-  var Url = youtubeApi + "?" + params;
+  var Url = youtubeApi + params;
 
   fetch(Url) 
   .then(function(response) {

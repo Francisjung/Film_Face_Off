@@ -9,31 +9,25 @@
     <link rel="stylesheet" href="../css/foundation.min.css">
 </head>
 <header>
-    <div class="row medium-stack">
-        <div class="columns small-3 small-centered">Error Page</div>
-        <!--<h1>Error Page</h1>-->
-    </div>
+    <h1>Film Face-Off</h1>
+    <h2>Error Page</h2>
 </header>
 
 <body>
     <div class="row medium-stack">
-        <div class="small-3 small-centered columns"><img src="..//Useful Things/Sad Cage 2.gif" alt="Sad Face :"></div>
-        <div class="small-3 small-centered columns"><p1>We're sorry your search has found no results</p1></div>
+        <div class="small-3 small-centered columns"><img src="../Assets/Sad Cage 2.gif" alt="Sad Face :"></div>
+        <div class="small-3 small-centered columns"><p1 class="ErrorText">We're sorry your search has found no results</p1></div>
         <!--<div><button type="New Search">New Search</button></div>-->
         <div class="small-3 small-centered columns"><a Href="../index.html" class="button">New Search</a></div>
     
     <script src="../js/vendor/jquery.js"></script>
     <script src="../js/vendor/what-input.js"></script>
     <script src="../js/vendor/foundation.js"></script>
-    <script src="../js/app.js"></script>
+    <script src="../js/error.js"></script>
     
 </body>
 <footer>
-    <div class="row medium-stack">
-        <div class="small-3 small-centered columns">
-            <p1>This result had nothing to do with</p1>
-            <img src="../Useful Things\TMDB Logo Primary.svg" alt="The Movie Database">
-        </div>
-    </div>
+    <img id="tmdb" src="../Assets/blue_long.svg">
+    <p id="disclaimer">This website uses TMDB and the TMDB APIs but the website is not endorsed, certified, or otherwise approved by TMDB.</p>
 </footer>
 </html>

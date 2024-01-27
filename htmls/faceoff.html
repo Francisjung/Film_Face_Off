@@ -6,8 +6,11 @@
     <title>Film Face-Off | Face Off</title>
     <link rel="stylesheet" href="../css/foundation.css">
     <link rel="stylesheet" href="../css/app.css">
-
 </head>
+<header>
+    <h1>Film Face-Off</h1>
+    <h2>Many Films Enter, Only One Can Win...</h2>
+</header>
 <body>
     <div class="double-container">
         <div class="movie-container">
@@ -15,6 +18,8 @@
             <div class="movie-info">
                 <h1 id="movie-title-1"></h1>
                 <p id="movie-description-1"></p>
+            </div>
+            <div class="button-container">
                 <button id="faceoffButton1">
                     Vote
                 </button>
@@ -25,12 +30,19 @@
             <div class="movie-info">
                 <h1 id="movie-title-2"></h1>
                 <p id="movie-description-2"></p>
+            </div>
+            <div class = "button-container">
                 <button id="faceoffButton2">
                     Vote
                 </button>
             </div>
         </div>
     </div>
+    <div class="spacer"></div>
+        <footer>
+            <img id="tmdb" src="../Assets/blue_long.svg">
+            <p id="disclaimer">This website uses TMDB and the TMDB APIs but the website is not endorsed, certified, or otherwise approved by TMDB.</p>
+        </footer>
     
 
     <script src="../js/vendor/jquery.js"></script>
