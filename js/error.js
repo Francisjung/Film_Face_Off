@@ -5,8 +5,9 @@ const { genreNumber, genreText, releaseYear, actor, similarTo, moviesNumber, siz
 console.log (code1, code2, code3, genreNumber, genreText, releaseYear, actor, similarTo, moviesNumber, size, );
 if (genreText) var genreT = genreText.toLowerCase()
 console.log (genreT)
-//localStorage.removeItem("faceoff");
-var errorText = document.querySelector(".ErrorText")
+localStorage.removeItem("faceoff");
+localStorage.removeItem("error")
+var errorText = document.querySelector(".errorText")
 const error1 = `Sorry, but "${actor}" isn't an actor. Please check your spelling and try again.` 
 const error2 = `Sorry, but "${similarTo}" isn't a movie. Please check your spelling and try again.`
 const error3 = `Sorry, you can only search for movies similar to "${similarTo}"  when you search for it seperate from all the preceding parameters.  If you intend to search for movies similar to "${similarTo}" then leave "Has the Following Actor or Actress" blank.  If you intend to search for movies with ${actor} then leave "Similar to Movie Below" blank.<br><br> Finally, when using "Similar to Movie Below", TMDB warns: This method only looks for other items based on genres and plot keywords. As such, the results found here are not always going to be 100%. Use it with that in mind.`

@@ -19,13 +19,13 @@
     <div class="translucent-form-overlay">
         <form>
           <h3>Search for Movies</h3>
-          <h4>(Fill out the last row and one of the first four rows)</h4>
+          <h4>(Use "Similar to Movie Below" by itself)</h4>
           
           <!-- Form section for Genre selection -->
           <div class="row columns">
             <label>Movie's Genre
               <select name="genres" id="genre" type="number" value="">
-                <option value=""       >Coming Soon</option>
+                <option value=""       >Choose One</option>
                 <option value=28       >Action           </option>
                 <option value=12       >Adventure        </option>
                 <option value=16       >Animation        </option>
@@ -51,18 +51,18 @@
           <!-- Form section for Release Year -->
           <div class="row columns">
                 <label>Year Movie Released
-                  <input type="number" id="releaseYear" placeholder="Coming Soon">
+                  <input type="number" id="releaseYear">
                 </label>
           </div>
           <!-- Form section for actor/actress selection -->
           <div class="row columns">
             <label>Has the Following Actor or Actress
-              <input type="text" id="actor" name="location" placeholder="Any">
+              <input type="text" id="actor">
             </label>
         </div>
         <div class="row columns">
-          <label>Similar to the Movie Below (by plot and/or genre)
-            <input type="text" id="similarTo" name="location" placeholder="Any">
+          <label>Similar to the Movie Below (according to genre and plot keywords)
+            <input type="text" id="similarTo">
           </label>
       </div>
         <!-- Form section for year range (from/to) selection -->

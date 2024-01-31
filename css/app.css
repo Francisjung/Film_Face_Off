@@ -1,4 +1,9 @@
-  header, footer {
+body {
+  font-family: Arial, sans-serif;
+  background-image: url(https://wallpapercave.com/wp/wp1945897.jpg);
+  background-size: cover;
+}
+header, footer {
     color: #f5f5f5;
     font-family: Arial, sans-serif;
     background-color: #022b4a;
@@ -74,11 +79,7 @@ p {
   background-color: rgba(54, 54, 54, 0.8);
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-image: url(https://wallpapercave.com/wp/wp1945897.jpg);
-  background-size: cover;
-}
+
 
 .double-container {
   display: flex;
@@ -87,7 +88,7 @@ body {
   align-items: center;
   height: auto;
   width: 100%;
-  /*visibility: hidden;*/
+  visibility: hidden;
 }
 
 .movie-container {
@@ -95,14 +96,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(54, 54, 54, 0.2);
-  padding: 20px;
+  background-color: rgba(54, 54, 54, 0.1);
   height: auto;
   width: 40%;
-  border: 2px solid black;
   }
 
-.movie-info, .movie-poster, #movie-description-1, #movie-description-2{
+.movie-info, .movie-poster{
   background-color: #ffffff;
   opacity: 1;
   padding: 2px;
@@ -110,8 +109,8 @@ body {
   border: 1px solid black;
 }
 
-.movie-poster {
-  border-bottom: 3px solid white;
+.button-container{
+  background-color: white;
 }
 
 .movie-container img {
@@ -122,14 +121,18 @@ body {
 #movie-img-1, #movie-img-2{
 opacity: 1.0;
 }
+#movie-description-1, #movie-description-2{
+  background-color:white;
+  color: black;
+}
 
-.movie-container /*.movie-info*/ {
+/*.movie-container, .movie-info {
   max-width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: 1px;
-  background-color: #ffffff;
+  background-color: #ffffff;*/
 
 }
 

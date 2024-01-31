@@ -1,4 +1,4 @@
-var genreNumber;
+var genreNumber; //
 var subtract = 0;
 var year;
 var like;
@@ -42,9 +42,9 @@ if (button) {
   button.addEventListener('click', function(event) {
    event.preventDefault();
    
-   genre = movieGenre.value;
-   if (genre) {saveString.genreNumber = genre;
-    const genreT = movieGenre.options[movieGenre.selectedIndex].text;
+   genre = movieGenre.value;  //this pulls the number (value) of the "Movie's genre" blank
+   if (genre) {saveString.genreNumber = genre;  //as with all below, this adds "genreNumber":movieGenre.value to the saveString object
+    const genreT = movieGenre.options[movieGenre.selectedIndex].text; //this pulls the text value of the "Movie's genre" blank
     saveString.genreText = genreT; 
     subtract = 1;
     console.log (genre, genreT);
@@ -66,5 +66,6 @@ if (button) {
    console.log(stringSize)
 
   localStorage.setItem("faceoff", JSON.stringify(saveString));
-    window.location.href = './htmls/faceoff.html';
+  console.log (saveString)
+   window.location.href = './htmls/faceoff.html';
   })}
