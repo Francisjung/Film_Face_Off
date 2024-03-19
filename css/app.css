@@ -1,8 +1,9 @@
-body {
+body, #errorDiv, .winnerBody {
   font-family: Arial, sans-serif;
   background-image: url(https://wallpapercave.com/wp/wp1945897.jpg);
   background-size: cover;
 }
+
 header, footer {
     color: #f5f5f5;
     font-family: Arial, sans-serif;
@@ -206,3 +207,26 @@ footer {
     justify-content: center;
     background-color: white;
   }
+
+  .errorTextDiv {
+    background-color: white;
+    color: black;
+    height: 25%;
+    padding: 10px 20px 10px 20px;
+    border: px solid black;
+  }
+#errorDiv {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+flex-wrap: nowrap;
+height: 100%;
+
+
+  }
+
+.sadFaceDiv {
+  flex-basis: 200px;
+  height: 200px;
+}
+

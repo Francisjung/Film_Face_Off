@@ -30,13 +30,13 @@ function setupError(code1, code2, code3) {
     "code2": code2,
     "code3": code3,}
   localStorage.setItem("error", JSON.stringify(storeError)); 
-window.location.href = '../htmls/error.html';
+  window.location.href = '../htmls/error.html';
   }
 /*This function will look for movies that match the requested genre, release date, and/or actor (using the actorId found in
 the actorIdSearch.  If more than one or more movies is returned then the data will be sent to the makeContestants function.
 If not the error page will be brought up via the setupError function*/
 function movieSearch(actorId){
-  var search = `https://api.themoviedb.org/3/discover/movie?api_key=${apikey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_cast=${actorId}&with_genres=${genreNumber}&primary_release_year=${releaseYear}`
+  var search = `https://api.themoviedb.org/3/discover/movie?api_key=${apikey}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc${actorId?"&with_cast="+actorId:""}${genreNumber?"&with_genres="+genreNumber:""}${releaseYear?"&primary_release_year="+releaseYear:""}`
   
   fetch(search).then(function(response){
   
@@ -49,7 +49,8 @@ function movieSearch(actorId){
   if (data.results.length <1) setupError(4);
   makeContestants(data); 
 })};
-//This function finds the actor ID using an actor's name it then forwards on to the next search
+/*This function finds the actor ID using an actor's name it then forwards on to movieSearch which uses the actorId
+ and not the actor's name*/
 function actorIdSearch(){
   console.log ("actorIdSearch");
   var search = `https://api.themoviedb.org/3/search/person?api_key=${apikey}&language=en-US&page=1&include_adult=false&query=${actor}`;

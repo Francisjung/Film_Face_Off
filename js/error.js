@@ -20,7 +20,7 @@ const error9 = `Sorry, you can only search for movies similar to "${similarTo}" 
 const error10 = `Sorry, no movies matched your search request.  This is likely because you tried to search for movies using too many parameters.  I couldn't find any ${genreT} movies made in ${releaseYear} with ${actor}.  Please remove or change one or two of these parameters and try again.`
 const error11 = `Sorry, no movies matched your search request.  This is likely because you tried to search for movies using too many parameters.  I couldn't find any ${genreT} movies made in ${releaseYear}.  Please remove or change one or two of these parameters and try again.`
 const error12 = `Sorry, no movies matched your search request.  This is likely because you tried to search for movies using too many parameters.  I couldn't find any movies made in ${releaseYear} with ${actor}.  Please remove or change one or two of these parameters and try again.`
-const error13 = `Sorry, no movies matched your search request.  This is likely because you tried to search for movies using too many parameters.  I couldn't find any ${genreT} movies with ${actor}.  Please remove or change one or these parameters and try again.`
+const error13 = `Sorry, no movies matched your search request.  This is likely because you tried to search for movies using too many parameters.  I couldn't find any ${genreT} movies with ${actor}.  Please remove or change one of these parameters and try again.`
 const error14 = "You need to fill out at least one of the blanks if you want to search movies!  Please try again."
 
 if (code1==1) errorText.innerHTML = error1;

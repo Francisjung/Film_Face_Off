@@ -43,7 +43,8 @@ if (button) {
    event.preventDefault();
    
    genre = movieGenre.value;  //this pulls the number (value) of the "Movie's genre" blank
-   if (genre) {saveString.genreNumber = genre;  //as with all below, this adds "genreNumber":movieGenre.value to the saveString object
+   if (genre) {
+    saveString.genreNumber = genre;  //as with all below, this adds "genreNumber":movieGenre.value to the saveString object
     const genreT = movieGenre.options[movieGenre.selectedIndex].text; //this pulls the text value of the "Movie's genre" blank
     saveString.genreText = genreT; 
     subtract = 1;
