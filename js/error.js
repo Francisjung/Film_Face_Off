@@ -36,8 +36,7 @@ if (code1==3) {
   if (code2==3 && code3==3) errorText.innerHTML = error8;
 };
 if (code1==4) {
-  if (actor && genreText && releaseYear) errorText.innerHTML = error10;
-  if (genreText && releaseYear) errorText.innerHTML = error11;
-  if (actor && releaseYear) errorText.innerHTML = error12;
-  if (actor && genreNumber) errorText.innerHTML = error13;
-}
+  if (actor && genreText && releaseYear) {errorText.innerHTML = error10;
+  } else if (genreText && releaseYear) {errorText.innerHTML = error11;
+  } else if (actor && releaseYear) {errorText.innerHTML = error12;
+  } else if (actor && genreNumber) {errorText.innerHTML = error13;}};
