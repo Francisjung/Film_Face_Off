@@ -149,6 +149,7 @@ putInfo();
 
 //This gets the actor from localStorage and starts the correct fetch fuction
 var fromStorage = JSON.parse(localStorage.getItem("faceoff"));
+console.log(fromStorage)
 const { genreNumber, genreText, releaseYear, actor, similarTo, moviesNumber, size } = fromStorage;
 moviesCount = moviesNumber
 console.log(genreNumber, releaseYear, actor, similarTo, moviesNumber, size, moviesCount);
