@@ -2,6 +2,7 @@ body {
   font-family: Arial, sans-serif;
   background-image: url(https://wallpapercave.com/wp/wp1945897.jpg);
   background-size: cover;
+  height: auto;
 }
 
 header, footer {
@@ -102,10 +103,10 @@ p {
   width: 40%;
   }
 
-.movie-info, .movie-poster{
+.movie-info, .movie-poster, .errorTextDiv{
   background-color: #ffffff;
   opacity: 1;
-  padding: 2px;
+  padding: 5px;
   color: black;
   border: 1px solid black;
 }
@@ -146,7 +147,7 @@ opacity: 1.0;
   margin: 10px 0;
 }
 
-#faceoffButton1,#faceoffButton2 {
+#faceOffButton1,#faceOffButton2 {
   margin-top: 10px;
   padding: 10px;
   font-size: 20px;
